@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+extraProperties=sonar.jacoco.reportPath\=/home/nhaouari/workspace/cancer-therapy-evaluation/cancer-therapy-evolution-api/target/coverage-reports/jacoco-ut.exec\r\nsonar.jacoco.itReportPath\=/home/nhaouari/workspace/cancer-therapy-evaluation/cancer-therapy-evolution-api/target/coverage-reports/jacoco-it.exec
+projectKey=com.cancer.therapy.evolution\:cancer-therapy-evolution-api
+serverUrl=http\://localhost\:9000
+version=2
