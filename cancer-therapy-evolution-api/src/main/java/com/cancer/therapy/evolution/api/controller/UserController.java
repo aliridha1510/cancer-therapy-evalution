@@ -1,37 +1,43 @@
+
 package com.cancer.therapy.evolution.api.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cancer.therapy.evolution.core.model.User;
-import com.cancer.therapy.evolution.core.repository.UserDao;
+import com.cancer.therapy.evolution.core.repository.UserRepository;
 
 @RestController("user")
 public class UserController {
 
 	@Autowired
-	private UserDao userRepository;
+	private UserRepository userRepository;
 
-	@RequestMapping(value = "/create", method = POST)
-	
-	public String create(@RequestBody User user) {
-		try {
-			userRepository.save(user);
-		} catch (Exception ex) {
-			return "Error creating the user: " + ex.toString();
-		}
-		return "User succesfully created! (id = " + user.getId() + ")";
+	@RequestMapping(method = POST)
+	public void create(@RequestBody User user) {
+		userRepository.save(user);
 	}
-	
-	@RequestMapping(value ="/test" )
-	@ResponseBody
-	public User test(){
-		 return userRepository.findByName("ali");
+
+	@CrossOrigin
+	@RequestMapping(value = "/authenticate", method = POST)
+	public void authenticate(@RequestBody User user) {
+		User usr = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+		if (usr == null)
+			throw new IllegalAccessError("User not found");
+	}
+
+	@RequestMapping(value = "{userId}", method = PUT)
+	public void updae(@RequestBody User user, @PathParam("userId") Integer userId) {
+		// userRepository.(user);
 	}
 
 }

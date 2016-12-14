@@ -114,4 +114,4 @@ public class User {
 		this.name = value;
 	}
 
-} // class User
+}
