@@ -1,9 +1,14 @@
 package com.cancer.therapy.evolution.core.model;
 
+import java.sql.Date;
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -27,10 +32,49 @@ public class User {
 	// The user's name
 	@NotNull
 	private String name;
+	
+	@NotNull
+	
+	private String lastname;
+	
+	@NotNull
+	private Date date;
+	
+	@NotNull
+	
+	private String Password;
+	
+	
+	 @ManyToMany(mappedBy="user",fetch=FetchType.LAZY)
+	  private Collection<Account> Accounts;
 
 	// ------------------------
 	// PUBLIC METHODS
 	// ------------------------
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
+	}
 
 	public User() {
 	}
