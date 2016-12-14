@@ -24,8 +24,11 @@ public class User {
 	@NotNull
 	private String email;
 
-	// The user's name
+	// The user's email
 	@NotNull
+	private String password;
+
+	// The user's name
 	private String name;
 
 	// ------------------------
@@ -44,6 +47,13 @@ public class User {
 		this.name = name;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	// Getter and setter methods
 
 	public long getId() {
