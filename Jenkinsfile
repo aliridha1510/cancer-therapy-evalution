@@ -10,7 +10,7 @@ node {
                 sh 'mvn clean install -Dmaven.test.skip'
                 stage ('Deploy'){
                 sh 'pwd'
-                sh 'cp therapy-evolution/cancer-therapy-evolution-api/target/cancer-therapy-evolution-api.jar /opt/therapy-evolution/jar/'
+                sh 'cp cancer-therapy-evolution-api/target/cancer-therapy-evolution-api.jar /opt/therapy-evolution/jar/'
                 }
   	      
          } catch (ex) {
