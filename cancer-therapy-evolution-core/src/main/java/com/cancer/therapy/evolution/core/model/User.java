@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -42,15 +43,26 @@ public class User {
 	
 	@NotNull
 	
-	private String Password;
+	private String password;
+	@JoinTable(name = "user_has_account")
+	 @ManyToMany(targetEntity = Account.class,fetch=FetchType.LAZY)
+	 private Collection<Account> accounts;
 	
 	
-	 @ManyToMany(mappedBy="user",fetch=FetchType.LAZY)
-	  private Collection<Account> Accounts;
+	// @ManyToMany(mappedBy="user",fetch=FetchType.LAZY)
+	//  private Collection<Account> Accounts;
 
 	// ------------------------
 	// PUBLIC METHODS
 	// ------------------------
+
+	public Collection<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Collection<Account> accounts) {
+		this.accounts = accounts;
+	}
 
 	public String getLastname() {
 		return lastname;
@@ -69,11 +81,11 @@ public class User {
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public User() {
