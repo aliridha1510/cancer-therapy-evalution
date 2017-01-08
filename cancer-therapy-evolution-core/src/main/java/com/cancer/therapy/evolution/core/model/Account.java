@@ -2,17 +2,15 @@ package com.cancer.therapy.evolution.core.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import javax.persistence.GeneratedValue;
+
 import javax.persistence.GenerationType;
 
 
@@ -41,7 +39,7 @@ public  class Account implements Serializable {
 
 	public Account() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Date getDateCreate() {

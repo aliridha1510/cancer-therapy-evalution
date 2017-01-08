@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -33,60 +34,32 @@ public class User {
 	// The user's name
 	@NotNull
 	private String name;
-	
+
 	@NotNull
-	
+
 	private String lastname;
-	
+
 	@NotNull
 	private Date date;
-	
+
+	private String adress;
+
 	@NotNull
-	
 	private String password;
-	@JoinTable(name = "user_has_account")
-	 @ManyToMany(targetEntity = Account.class,fetch=FetchType.LAZY)
-	 private Collection<Account> accounts;
-	
-	
+
+	@JoinTable(name = "user_has_test")
+	@ManyToMany(targetEntity = TestUser.class, fetch = FetchType.LAZY)
+	private Collection<TestUser> testuser;
+
+	// @JoinTable(name = "user_has_test")
+	// @OneToMany(targetEntity = TestUser.class, fetch = FetchType.LAZY)
+
 	// @ManyToMany(mappedBy="user",fetch=FetchType.LAZY)
-	//  private Collection<Account> Accounts;
+	// private Collection<Account> Accounts;
 
 	// ------------------------
 	// PUBLIC METHODS
 	// ------------------------
-
-	public Collection<Account> getAccounts() {
-		return accounts;
-	}
-
-	public void setAccounts(Collection<Account> accounts) {
-		this.accounts = accounts;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public User() {
 	}
@@ -95,11 +68,27 @@ public class User {
 		this.id = id;
 	}
 
-	public User(String email, String name) {
+	///// pour cree user //
+
+	public User(String email, String password) {
 		this.email = email;
-		this.name = name;
+		this.password = name;
+
 	}
 
+	/// constroctor with parameter ///
+
+	public User(long id, String email, String name, String lastname, Date date, String adress, String password) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.name = name;
+		this.lastname = lastname;
+		this.date = date;
+		this.adress = adress;
+		this.password = password;
+
+	}
 	// Getter and setter methods
 
 	public long getId() {
@@ -116,6 +105,14 @@ public class User {
 
 	public void setEmail(String value) {
 		this.email = value;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {

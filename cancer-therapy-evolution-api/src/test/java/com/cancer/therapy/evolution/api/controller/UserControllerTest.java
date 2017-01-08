@@ -21,7 +21,7 @@ public class UserControllerTest {
 	private UserRepository userRepository;
 
 	@Test
-	public void testCreateUser() {
-		userController.create(new User());
+	public void testSaveUser() {
+		userController.save(new User());
 	}
 }
